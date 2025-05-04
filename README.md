@@ -1,8 +1,10 @@
 ## YesDesktopLyrics
 
-一个极简的命令行工具 + Hammerspoon 解决方案，用于在 macOS 上显示 [YesPlayMusic](https://github.com/qier222/YesPlayMusic) 的歌词。
+一个极简的命令行工具 + Hammerspoon 解决方案，用于在 macOS 上显示 [YesPlayMusic](https://github.com/qier222/YesPlayMusic) 的歌词。极简内存占用！
 
 ![screenshot](<screenshot.png>)
+
+![screenshot2](<screenshot2.png>)
 
 ### 二进制文件发布
 
