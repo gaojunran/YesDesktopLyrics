@@ -2,6 +2,8 @@
 
 一个极简的命令行工具 + Hammerspoon 解决方案，用于在 macOS 上显示 [YesPlayMusic](https://github.com/qier222/YesPlayMusic) 的歌词。
 
+![screenshot](<screenshot.png>)
+
 ### 二进制文件发布
 
 如果您是 ARM 架构的 MacOS ，可以直接在 Release 中下载二进制文件并加入 PATH 中。
