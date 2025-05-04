@@ -6,13 +6,13 @@ use serde_json::Value;
 #[derive(Debug)]
 pub struct PlayerInfo {
     pub(crate) song_id: u64,
-    pub(crate) progress: f64
+    pub(crate) progress: f64,
 }
 
 #[derive(Debug)]
 pub struct SongLyrics {
-    song_id: u64,
-    lyrics: Vec<Lyric>
+    pub(crate) song_id: u64,
+    pub(crate) lyrics: Vec<Lyric>,
 }
 
 impl SongLyrics {
@@ -31,8 +31,8 @@ impl SongLyrics {
 
 #[derive(Debug)]
 pub struct Lyric {
-    time: f64,
-    content: String
+    pub(crate) time: f64,
+    pub(crate) content: String,
 }
 
 pub async fn fetch_player() -> Result<PlayerInfo> {
@@ -51,12 +51,12 @@ pub async fn fetch_player() -> Result<PlayerInfo> {
             .as_f64()
             .ok_or_else(|| anyhow!("Failed to parse progress"))?;
 
-        Ok(PlayerInfo {
-            song_id,
-            progress
-        })
+        Ok(PlayerInfo { song_id, progress })
     } else {
-        Err(anyhow!("Failed to fetch player info: {}. Is YesPlayMusic running?", response.status()))
+        Err(anyhow!(
+            "Failed to fetch player info: {}. Is YesPlayMusic running?",
+            response.status()
+        ))
     }
 }
 
@@ -67,17 +67,16 @@ pub async fn fetch_lyrics(id: u64) -> Result<SongLyrics> {
     if response.status().is_success() {
         let json: Value = response.json().await?;
 
-        let lyrics_str = json["lrc"]["lyric"].as_str()
+        let lyrics_str = json["lrc"]["lyric"]
+            .as_str()
             .ok_or(anyhow!("Lyrics not found"))?;
 
         let re = Regex::new(r"(?m)\[(\d{2}:\d{2}\.\d{2,3})\](.*?)$")?;
         let mut lyrics = Vec::new();
 
         for cap in re.captures_iter(lyrics_str) {
-            let time_str = cap.get(1)
-                .ok_or(anyhow!("Time not found"))?.as_str();
-            let content = cap.get(2)
-                .ok_or(anyhow!("Content not found"))?.as_str();
+            let time_str = cap.get(1).ok_or(anyhow!("Time not found"))?.as_str();
+            let content = cap.get(2).ok_or(anyhow!("Content not found"))?.as_str();
 
             // 将时间字符串转换为秒
             let parts: Vec<&str> = time_str.split(':').collect();
@@ -90,7 +89,10 @@ pub async fn fetch_lyrics(id: u64) -> Result<SongLyrics> {
                 content: content.to_string(),
             });
         }
-        Ok(SongLyrics { song_id: id, lyrics })
+        Ok(SongLyrics {
+            song_id: id,
+            lyrics,
+        })
     } else {
         Err(anyhow!("Failed to fetch lyrics: {}. ", response.status()))
     }
