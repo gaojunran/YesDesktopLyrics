@@ -38,6 +38,6 @@ require("lyrics")
 
 ### 贡献代码
 
-本项目设计为一个命令行工具，运行`yes line`可以从 YesPlayMusic 开放的本地 API 中得到当前歌词，可以轻松在各个工具中集成。
+本项目设计为一个命令行工具，运行`lyrics line`可以从 YesPlayMusic 开放的本地 API 中得到当前歌词，可以轻松在各个工具中集成。
 
 如您有 Windows 或 Linux 平台上类似 Hammerspoon 工具的脚本，可以在这两个平台的状态栏上显示歌词，欢迎给我提交 Pull Request！
