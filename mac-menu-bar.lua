@@ -9,7 +9,7 @@ menubar:setTitle("🎵")
 
 
 function updateLyric()
-    local output, status = hs.execute("yes line")
+    local output, status = hs.execute("lyrics line")
     if status and output then
         local lyric = output:gsub("[\r\n]", "")
         menubar:setTitle("🎵 " .. lyric)

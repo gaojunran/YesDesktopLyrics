@@ -19,7 +19,7 @@
 ```bash
 cargo install --path .
 ```
-测试一下，在 YesPlayMusic 播放歌曲时，在 bash 中运行`yes line`，如果正确地输出了当前歌词，则说明工具运转正常。
+测试一下，在 YesPlayMusic 播放歌曲时，在 bash 中运行`lyrics line`，如果正确地输出了当前歌词，则说明工具运转正常。
 
 ### 使用方法
 
