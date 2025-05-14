@@ -18,7 +18,8 @@ function updateLyric()
     end
 end
 
+-- https://github.com/Hammerspoon/hammerspoon/issues/1942
 -- You can change the interval as you want.
-hs.timer.doEvery(0.5, updateLyric)
+myTimer = hs.timer.doEvery(0.5, updateLyric)
 
 updateLyric()
